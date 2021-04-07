@@ -1,17 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class Username extends React.Component{
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            Fullname:"",
+            newname:"new"
+        }
+    }
+    changeName =(e)=>
+    {
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
+    submit=()=>{
+        this.setState({newname:this.state.Fullname})
+    }
+    
+    render(){
+        //const {Fullname}=this.state
+        return(
+            <div>
+                <h2>welcome {this.state.newname} </h2>
+                    <p><input type='text' placeholder='Name' name='Fullname' onChange={this.changeName}/></p>
+                    <p><button onClick={this.submit}>Submit</button></p>
+            </div>
+        )
+    }
+}
+ReactDOM.render(<Username/>, document.getElementById('root'));
